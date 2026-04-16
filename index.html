@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<h2>Файл Program.cs</h2>
+<p>Код из файла `Program.cs`, который находится при создании пустого приложения ASP.NET.</p>
+<div>
+    <pre><code>
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello World!");
+app.MapGet("/test", () => "Это тест");
+
+app.Run();
+    </code></pre>
+
+</div>

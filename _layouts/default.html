@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <title>Linuxgik ASP.NET</title>
+</head>
+<body>
+    <header>
+        {% include nav_main.html %}
+    </header>
+
+    <aside>
+        {% include aside_left.html%}
+    </aside>
+
+    <main>
+        {{ content }}
+    </main>
+    
+    <aside>
+        {% include aside_right.html%}
+    </aside>
+
+    <footer>
+        {% include footer.html %}
+    </footer>
+</body>
+</html>
