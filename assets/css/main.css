@@ -1,0 +1,12 @@
+@import "color-tail.css";
+@import "font/font.css";
+
+html {
+    background-color: var(--color-neutral-800);
+    color: var(--color-gray-300);
+    font-family: Inter;
+}
+
+h1 {
+    color: var(--color-violet-600)
+}
