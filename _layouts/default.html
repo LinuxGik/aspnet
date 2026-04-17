@@ -3,28 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/reset.css">
+    <link rel="stylesheet" href="/assets/css/grid_layout.css">
     <link rel="stylesheet" href="/assets/css/main.css">
-    <title>Linuxgik ASP.NET</title>
+    <title>LinuxGik ASP.NET</title>
 </head>
 <body>
+<div class="grid-container">
     <header>
         {% include nav_main.html %}
     </header>
 
-    <aside>
-        {% include aside_left.html%}
+    <aside class="left-aside">
+        {% include aside_left.html %}
     </aside>
 
     <main>
         {{ content }}
     </main>
     
-    <aside>
-        {% include aside_right.html%}
+    <aside class="right-aside">
+        {% include aside_right.html %}
     </aside>
 
     <footer>
         {% include footer.html %}
     </footer>
+</div>
 </body>
 </html>
