@@ -1,0 +1,15 @@
+---
+layout: default
+title: Блог
+---
+
+<h2>Последние посты</h2>
+
+<ul>
+    {% for post in site.posts %}
+        <li>
+            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+            {{ post.excerpt }}
+        </li>
+    {% endfor %}
+</ul>

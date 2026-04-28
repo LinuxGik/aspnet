@@ -1,4 +1,9 @@
-<h1>LinuxGik ASP.NET</h1>
-<ul>
-    <li>Бренд кнопка</li>
-</ul>
+<h1>LinuxGik ASP.NET {% if page.title %} {{ page.title | prepend: "- " }} {% endif %}</h1>
+<nav>
+    <ul class="nav">
+        {% for item in site.data.navigation %}
+                <li><a href="{{ item.link | relative_url }}">{{ item.name }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>
+

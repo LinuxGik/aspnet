@@ -3,18 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/reset.css">
-    <link rel="stylesheet" href="/assets/css/grid_layout.css">
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="/aspnet/assets/css/reset.css">
+    <link rel="stylesheet" href="/aspnet/assets/css/grid_layout.css">
+    <link rel="stylesheet" href="/aspnet/assets/css/main.css">
     <title>LinuxGik ASP.NET</title>
 </head>
 <body>
 <div class="grid-container">
-    <header>
-        <h1>LinuxGik ASP.NET</h1>
-<ul>
-    <li>Бренд кнопка</li>
-</ul>
+    <header class="page-header">
+        <h1>LinuxGik ASP.NET </h1>
+<nav>
+    <ul class="nav">
+        
+                <li><a href="/aspnet/">Home</a></li>
+        
+                <li><a href="/aspnet/blog.html">Блог</a></li>
+        
+    </ul>
+</nav>
+
+
     </header>
 
     <aside class="left-aside">
@@ -35,7 +44,6 @@ app.MapGet("/test", () => "Это тест");
 app.Run();
     </code></pre>
 </div>
-
 
     </main>
     

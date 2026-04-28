@@ -10,3 +10,28 @@ html {
 h1 {
     color: var(--color-violet-600)
 }
+
+/* nav_main */
+
+/* _layouts/default.html: <header class="page-header"> */
+.page-header {
+
+}
+/* _includes/nav_main.html:  <ul class="nav"> */
+.nav {
+    margin-top: 10px;
+    list-style: none;
+    padding-left: 0;
+}
+
+.nav li {
+    display: inline-block;
+}
+
+.nav a {
+    color: var(--color-violet-300);
+    background-color: var(--color-violet-900);
+    padding: 5px;
+    border-radius: 2px;
+    text-decoration: none;
+}
