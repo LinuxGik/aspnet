@@ -2,17 +2,24 @@
 @import "font/font.css";
 
 html {
-    background-color: var(--color-neutral-800);
-    color: var(--color-gray-300);
+    background-color: var(--color-black);
+    color: var(--color-gray-500);
     font-family: Inter, serif;
 }
 
 h1 {
-    color: var(--color-violet-600)
+    color: var(--color-violet-600);
+    margin-bottom: 10px;
 }
 
+footer {
+    background-color: black;
+    color: var(--color-yellow-600);
+    padding: 15px 0;
+    font-size: 14px;
+    text-align: center;
+}
 /* nav_main */
-
 /* _layouts/default.html: <header class="page-header"> */
 .page-header {
 
@@ -20,7 +27,6 @@ h1 {
 /* _includes/nav_main.html:  <ul class="nav"> */
 .nav {
     margin-top: 10px;
-    list-style: none;
     padding-left: 0;
 }
 
@@ -29,9 +35,21 @@ h1 {
 }
 
 .nav a {
-    color: var(--color-violet-300);
-    background-color: var(--color-violet-900);
-    padding: 5px;
+    background-color: var(--color-slate-800);
+    padding: 5px 15px;
     border-radius: 2px;
-    text-decoration: none;
+}
+
+/* Highlighting in the text */
+/* Примечание. Если разрастется, вынести в отдельный файл. */
+
+.concept {
+    color: var(--color-red-300);
+    font-weight: bold;
+}
+
+.single_phrase {
+    font-style: italic;
+    color: var(--color-green-500);
+    font-weight: 200;
 }

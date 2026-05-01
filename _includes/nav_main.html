@@ -1,9 +1,18 @@
-<h1>LinuxGik ASP.NET {% if page.title %} {{ page.title | prepend: "- " }} {% endif %}</h1>
+<!-- Навигация(главное меню) -->
 <nav>
     <ul class="nav">
+        <li>LinuxGik ASP.NET</li>
         {% for item in site.data.navigation %}
                 <li><a href="{{ item.link | relative_url }}">{{ item.name }}</a></li>
         {% endfor %}
     </ul>
 </nav>
+<!-- //////////////////////////// -->
 
+<!-- H1(главный заголовок страницы -->
+{% if page.layout == "post" %}
+    <h1>{{ page.title }}</h1>
+{% else %}
+    <h1>LinuxGik ASP.NET {% if page.title %} {{ page.title | prepend: "- " }} {% endif %}</h1>
+{% endif %}
+<!-- //////////////////////////// -->
