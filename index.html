@@ -5,8 +5,8 @@ layout: default
 <p>Код из файла `Program.cs`, который находится при создании пустого приложения ASP.NET.</p>
 <div>
     <pre><code>
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+var builder = WebApplication.CreateBuilder(args); /* cоздаем WebApplicationBuilder c помощью метода CreateBuilder */
+var app = builder.Build();  /* Создаём и возвращаем экземпляр WebApplicqtion из WebApplicationBuilder */
 
 app.MapGet("/", () => "Hello World!");
 app.MapGet("/test", () => "Это тест");

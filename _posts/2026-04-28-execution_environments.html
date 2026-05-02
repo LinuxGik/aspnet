@@ -1,7 +1,7 @@
 ---
 layout: post
 author: LinuxGik
-title: Среды выполнения (Runtime environments) ASP.NET Core
+title: Среды выполнения (Runtime environments) ASP.NET
 ---
 
 
@@ -14,6 +14,9 @@ title: Среды выполнения (Runtime environments) ASP.NET Core
 
 <section class="sum_post">
   <h2>Краткая сводка о посте</h2>
+    <p>
+        <a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-10.0">
+            ASP.NET runtime environments</a> - это ссылка ведет на старицу документации.</p>
     <div>
       <h3>Назначение и область применения</h3>
         <ul>
@@ -38,6 +41,7 @@ title: Среды выполнения (Runtime environments) ASP.NET Core
           а также облегчая отладку в процессе разработки.
         </p>
     </div>
+    <!--
     <div>
       <h3>Краткое изложение</h3>
         <ul>
@@ -50,6 +54,7 @@ title: Среды выполнения (Runtime environments) ASP.NET Core
               сервисами в зависимости от выбранной среды.</li>
         </ul>
     </div>
+    -->
     <figure>
         <figcaption>Словарь:</figcaption>
             <p>Environment - среда, окружение.</p>
@@ -60,7 +65,9 @@ title: Среды выполнения (Runtime environments) ASP.NET Core
 <h2>Environments (Среды)</h2>
     <p>Разработчик может сам создать свою среду.(Я это не использую. Достаточно того что предоставляет платформа)</p>
     <p>Среда в приложении задаётся любым значением строкового типа (string)</p>
-    <p>Среду выполнения невозможно изменить, когда приложение выполняется.</p>
+    <p>Среда приложения определяется последней считанной настройкой среды и не может быть изменена во время работы приложения.</p>
+
+<p>Среду выполнения невозможно изменить, когда приложение выполняется.</p>
         <h3>Среды предоставляемые платформой ASP.NET Core</h3>
             <p>Платформа ASP.NET Core предоставляет три среды выполнения.</p>
             <ul>
@@ -84,7 +91,5 @@ title: Среды выполнения (Runtime environments) ASP.NET Core
                             </li>
                         </ul>
                     </div>
-                    <p>Среда приложения определяется последней считанной настройкой среды и не может быть изменена
-                        во время работы приложения.</p>
-                    
+
 

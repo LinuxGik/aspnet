@@ -1,0 +1,211 @@
+---
+layout: post
+author: LinuxGik
+title: Добавление и настройка служб(сервисов) в приложении ASP.NET
+tag: program.cs службы
+---
+
+<!--
+Кинг, отличный вопрос — и да, **точно можно узнать**, какие службы ASP.NET Core автоматически регистрирует `WebApplication.CreateBuilder()`.
+
+Ниже — **полный, технически точный, структурированный список**, основанный на содержимом твоей открытой вкладки   [learn.microsoft.com](https://learn.microsoft.com/ru-ru/aspnet/core/fundamentals/?view=aspnetcore-10.0&tabs=windows) и внутреннем устройстве ASP.NET Core.
+
+---
+
+## 🎯 Короткий ответ
+`CreateBuilder()` автоматически добавляет **десятки встроенных служб**, включая:
+
+- конфигурацию (IConfiguration)
+- логирование (ILogger, провайдеры логов)
+- маршрутизацию (EndpointRouting)
+- HTTP‑сервер (Kestrel)
+- обработку статических файлов
+- DI‑контейнер (IServiceProvider)
+- IHttpClientFactory
+- IHostEnvironment / IWebHostEnvironment
+- обработку ошибок
+- антифорджери
+- сериализацию JSON
+- и многое другое
+
+---
+
+## 📌 Полный список автоматически добавляемых служб
+Это то, что реально регистрируется внутри `CreateBuilder()` и `Host.CreateDefaultBuilder()`.
+
+### 1) **Конфигурация (Configuration)**
+Добавляются поставщики конфигурации:
+
+- appsettings.json
+- appsettings.{Environment}.json
+- переменные среды
+- аргументы командной строки
+- секреты пользователя (в Development)
+- пользовательские JSON/XML/INI при наличии
+
+Все это формирует `IConfiguration`.
+
+Источник: твоя вкладка — раздел *Configuration*   [learn.microsoft.com](https://learn.microsoft.com/ru-ru/aspnet/core/fundamentals/?view=aspnetcore-10.0&tabs=windows)
+
+---
+
+### 2) **Логирование (Logging)**
+Автоматически регистрируются провайдеры:
+
+- Console
+- Debug
+- EventSource
+- EventLog (Windows)
+- Azure App Service
+- Azure Application Insights (если доступно)
+
+Источник: раздел *Logging*   [learn.microsoft.com](https://learn.microsoft.com/ru-ru/aspnet/core/fundamentals/?view=aspnetcore-10.0&tabs=windows)
+
+---
+
+### 3) **Хостинг и окружение**
+Добавляются:
+
+- `IHostEnvironment`
+- `IWebHostEnvironment`
+- `IHostApplicationLifetime`
+- `IWebHostBuilder`
+- интеграция IIS (IISIntegration)
+
+Источник: раздел *Host*   [learn.microsoft.com](https://learn.microsoft.com/ru-ru/aspnet/core/fundamentals/?view=aspnetcore-10.0&tabs=windows)
+
+---
+
+### 4) **Kestrel**
+Автоматически регистрируется:
+
+- веб‑сервер Kestrel
+- его опции
+- обработчики сокетов
+
+Источник: раздел *Servers*   [learn.microsoft.com](https://learn.microsoft.com/ru-ru/aspnet/core/fundamentals/?view=aspnetcore-10.0&tabs=windows)
+
+---
+
+### 5) **Маршрутизация (Routing)**
+Добавляются:
+
+- EndpointRoutingMiddleware
+- EndpointDataSource
+- LinkGenerator
+- ParameterPolicyFactory
+
+Источник: раздел *Routing*   [learn.microsoft.com](https://learn.microsoft.com/ru-ru/aspnet/core/fundamentals/?view=aspnetcore-10.0&tabs=windows)
+
+---
+
+### 6) **Обработка ошибок**
+Добавляются службы:
+
+- DeveloperExceptionPage
+- ExceptionHandlerMiddleware
+- StatusCodePages
+
+Источник: раздел *Обработка ошибок*   [learn.microsoft.com](https://learn.microsoft.com/ru-ru/aspnet/core/fundamentals/?view=aspnetcore-10.0&tabs=windows)
+
+---
+
+### 7) **Антифорджери (Anti-forgery)**
+Добавляется:
+
+- IAntiforgery
+- AntiforgeryMiddleware
+
+Источник: пример с `app.UseAntiforgery()`   [learn.microsoft.com](https://learn.microsoft.com/ru-ru/aspnet/core/fundamentals/?view=aspnetcore-10.0&tabs=windows)
+
+---
+
+### 8) **Статические файлы**
+Добавляются:
+
+- StaticFileMiddleware
+- FileExtensionContentTypeProvider
+
+Источник: раздел *Корень веб-сайта* и *Статические файлы*   [learn.microsoft.com](https://learn.microsoft.com/ru-ru/aspnet/core/fundamentals/?view=aspnetcore-10.0&tabs=windows)
+
+---
+
+### 9) **HttpClientFactory**
+Автоматически регистрируется:
+
+- IHttpClientFactory
+- HttpMessageHandlerFactory
+- LoggingHandler
+
+Источник: раздел *Создание HTTP-запросов*   [learn.microsoft.com](https://learn.microsoft.com/ru-ru/aspnet/core/fundamentals/?view=aspnetcore-10.0&tabs=windows)
+
+---
+
+### 10) **Сериализация JSON**
+Добавляются:
+
+- System.Text.Json serializers
+- JsonOptions
+- ProblemDetails
+
+---
+
+### 11) **DI-контейнер**
+Добавляется:
+
+- Microsoft.Extensions.DependencyInjection
+- ServiceProvider
+- Scoped/Transient/Singleton инфраструктура
+
+---
+
+### 12) **Файловая система и пути**
+Добавляются:
+
+- IFileProvider (для ContentRoot и WebRoot)
+- PhysicalFileProvider
+
+Источник: раздел *Корень содержимого* и *Корень веб-сайта*   [learn.microsoft.com](https://learn.microsoft.com/ru-ru/aspnet/core/fundamentals/?view=aspnetcore-10.0&tabs=windows)
+
+---
+
+## 🧩 Почему это не видно в Program.cs?
+Потому что `CreateBuilder()` вызывает:
+
+- `Host.CreateDefaultBuilder()`
+- `ConfigureWebHostDefaults()`
+- регистрацию десятков сервисов внутри WebHostBuilder
+
+Это скрыто внутри фреймворка.
+
+---
+
+## 🔍 Можно ли увидеть полный список в рантайме?
+Да — вот минимальный код:
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+foreach (var service in app.Services.GetServices<IServiceDescriptor>())
+{
+    Console.WriteLine($"{service.ServiceType} — {service.Lifetime}");
+}
+```
+
+Но проще:
+
+```csharp
+foreach (var s in builder.Services)
+    Console.WriteLine(s.ServiceType.FullName);
+```
+
+---
+
+## ❓ Хочешь, я составлю:
+- **полный список всех сервисов**, которые реально регистрируются в .NET 8/9/10
+- **диаграмму**, показывающую цепочку вызовов CreateBuilder()
+- **таблицу “служба → за что отвечает”**
+
+Скажи, какой формат тебе удобнее.
+-->
